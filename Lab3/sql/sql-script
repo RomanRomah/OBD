@@ -1,0 +1,76 @@
+-- 1. ОЧИЩЕННЯ ТА ВИДАЛЕННЯ (DELETE)
+-- ---------------------------------------------------------
+
+-- Видалення тестового клієнта, який не робив замовлень
+DELETE FROM customers 
+WHERE email = 'ivan@outlook.com';
+
+-- Видалення застарілої категорії, якщо вона порожня
+DELETE FROM categories 
+WHERE name = 'Планшети';
+
+-- Видалення конкретного товару, який знято з виробництва
+DELETE FROM products 
+WHERE name = 'Samsung Galaxy S23';
+
+
+-- 2. ДОДАВАННЯ НОВИХ ДАНИХ (INSERT)
+-- ---------------------------------------------------------
+
+-- Реєстрація нового клієнта
+INSERT INTO customers (first_name, email)
+VALUES ('Дмитро', 'dima_kpi@ukr.net');
+
+-- Додавання нового товару до категорії "Ноутбуки" (ID 2)
+INSERT INTO products (category_id, name, price)
+VALUES (2, 'Lenovo Legion 5', 42000.00);
+
+-- Створення нового замовлення для Романа (ID 1)
+INSERT INTO orders (customer_id)
+VALUES (1);
+
+-- Додавання товару до нового замовлення
+INSERT INTO order_items (order_id, product_id, quantity)
+VALUES (6, 1, 1);
+
+
+-- 3. ОНОВЛЕННЯ ДАНИХ (UPDATE)
+-- ---------------------------------------------------------
+
+-- Проведення акції: знижка на всі смартфони (категорія 1)
+UPDATE products
+SET price = price * 0.9
+WHERE category_id = 1;
+
+-- Зміна пошти клієнта (зміна контактних даних)
+UPDATE customers
+SET email = 'roman_new_2026@kpi.ua'
+WHERE first_name = 'Роман';
+
+-- Оновлення назви товару для уточнення специфікації
+UPDATE products
+SET name = 'iPhone 15 Pro Max 256GB'
+WHERE name = 'iPhone 15';
+
+
+-- 4. ВИБІРКА ТА ПЕРЕГЛЯД (SELECT)
+-- ---------------------------------------------------------
+
+-- Отримання списку всіх зареєстрованих клієнтів
+SELECT * FROM customers;
+
+-- Перегляд товарів, ціна яких перевищує 30 000 грн (преміум сегмент)
+SELECT name, price 
+FROM products
+WHERE price > 30000;
+
+-- Перегляд усіх замовлень, зроблених сьогодні
+SELECT * FROM orders
+WHERE order_date >= CURRENT_DATE;
+
+-- Пошук товарів у конкретній категорії (наприклад, Ноутбуки)
+SELECT * FROM products
+WHERE category_id = 2;
+
+-- Перегляд вмісту кошика (деталізація замовлень)
+SELECT * FROM order_items;
