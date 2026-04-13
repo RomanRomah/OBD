@@ -1,7 +1,7 @@
--- =========================================================
--- Lab 4. SQL Data Manipulation (OLAP)
--- Project: Electronics Online Store
--- =========================================================
+
+## **Lab 4. SQL Data Manipulation (OLAP)**
+## Project: Electronics Online Store
+## SQL-скрипт(и)
 ```sql
 -- 1. Підрахунок загальної кількості замовлень
 -- Аналіз загальної активності покупців
